@@ -609,6 +609,7 @@ contact{
   }
   .portfolio{
     font-size: 20px;
+    margin-left: 0px;
   }
   .sidebar1{
     display: flex;
