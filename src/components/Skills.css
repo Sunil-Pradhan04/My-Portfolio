@@ -1,0 +1,239 @@
+.skills {
+    background: var(--bg-primary);
+}
+
+.skills-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.skills-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+}
+
+.skills-tagline {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: var(--gradient-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: var(--font-display);
+}
+
+.skills-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.skill-card {
+    padding: 2.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skill-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.skill-icon-container {
+    flex-shrink: 0;
+}
+
+.icon-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.skill-icon {
+    font-size: 2rem;
+    color: var(--accent-blue);
+    transition: var(--transition-smooth);
+}
+
+.skill-icon.single-icon {
+    font-size: 3rem;
+}
+
+.skill-icon:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--accent-purple);
+}
+
+.skill-info {
+    flex: 1;
+}
+
+.skill-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.skill-details {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.skill-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--gradient-pink);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.skill-progress {
+    margin-top: 1.5rem;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.progress-percentage {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.progress-bar {
+    height: 12px;
+    background: var(--bg-tertiary);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-blue {
+    background: var(--gradient-blue);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+.progress-purple {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.progress-pink {
+    background: var(--gradient-pink);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+}
+
+.progress-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .skills-tagline {
+        font-size: 1.5rem;
+    }
+
+    .skill-card {
+        padding: 1.5rem;
+    }
+
+    .skill-name {
+        font-size: 1.5rem;
+    }
+
+    .skill-header {
+        flex-direction: column;
+    }
+
+    .skill-badge {
+        position: static;
+        align-self: flex-start;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-tagline {
+        font-size: 1.3rem;
+    }
+
+    .skill-card {
+        padding: 1.25rem;
+    }
+
+    .skill-name {
+        font-size: 1.3rem;
+    }
+
+    .skill-icon {
+        font-size: 1.5rem;
+    }
+
+    .skill-icon.single-icon {
+        font-size: 2.2rem;
+    }
+
+    .skill-badge {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+    }
+}
