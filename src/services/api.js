@@ -1,5 +1,5 @@
 // Central API service for the portfolio backend
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 // ── Token helpers ────────────────────────────────────────────
 export const tokenStorage = {

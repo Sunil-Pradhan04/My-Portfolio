@@ -3,6 +3,8 @@ import { FaTimes, FaBrain, FaTrash, FaPlus } from 'react-icons/fa';
 import { tokenStorage } from '../services/api';
 import './KnowledgeManager.css';
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+
 const SECTIONS = [
     { value: 'about', label: '👤 About Me', placeholder: "Write about yourself — who you are, your background, education, what you're passionate about..." },
     { value: 'skills', label: '💡 Skills', placeholder: 'List your skills and proficiency levels. Include details about technologies you know...' },
@@ -30,7 +32,7 @@ const KnowledgeManager = ({ onClose }) => {
         setSaving(true);
         setResult(null);
         try {
-            const res = await fetch('/api/chatbot/knowledge', {
+            const res = await fetch(`${API_BASE}/chatbot/knowledge`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +59,7 @@ const KnowledgeManager = ({ onClose }) => {
         setDeleting(sec);
         setResult(null);
         try {
-            const res = await fetch(`/api/chatbot/knowledge/${sec}`, {
+            const res = await fetch(`${API_BASE}/chatbot/knowledge/${sec}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${tokenStorage.get()}` }
             });
@@ -75,7 +77,7 @@ const KnowledgeManager = ({ onClose }) => {
         setDeleting('all');
         setResult(null);
         try {
-            const res = await fetch('/api/chatbot/knowledge', {
+            const res = await fetch(`${API_BASE}/chatbot/knowledge`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${tokenStorage.get()}` }
             });

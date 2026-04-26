@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FaRobot, FaTimes, FaPaperPlane, FaChevronDown } from 'react-icons/fa';
 import './ChatBot.css';
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);
