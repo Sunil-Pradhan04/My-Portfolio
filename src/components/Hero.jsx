@@ -3,26 +3,30 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import './Hero.css';
 import sunilImg from '../assets/sunil.jpg';
 
-const Hero = () => {
+const Hero = ({ info }) => {
     const typedTextRef = useRef(null);
+    const timerRef = useRef(null);
 
+    // Typing animation — re-run when roles change
     useEffect(() => {
-        const roles = ['Full Stack Developer', 'React Native Developer', 'AI Enthusiast'];
+        if (!typedTextRef.current) return;
+        const roles = info?.roles?.length ? info.roles : ['Full Stack Developer', 'React Native Developer', 'AI Enthusiast'];
+
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
         let typingSpeed = 100;
 
         const typeText = () => {
+            if (!typedTextRef.current) return;
             const currentRole = roles[roleIndex];
 
             if (!isDeleting) {
                 typedTextRef.current.textContent = currentRole.substring(0, charIndex + 1);
                 charIndex++;
-
                 if (charIndex === currentRole.length) {
                     isDeleting = true;
-                    typingSpeed = 2000; // Pause at end
+                    typingSpeed = 2000;
                 } else {
                     typingSpeed = 100;
                 }
@@ -30,36 +34,44 @@ const Hero = () => {
                 typedTextRef.current.textContent = currentRole.substring(0, charIndex - 1);
                 charIndex--;
                 typingSpeed = 50;
-
                 if (charIndex === 0) {
                     isDeleting = false;
                     roleIndex = (roleIndex + 1) % roles.length;
                 }
             }
-
-            setTimeout(typeText, typingSpeed);
+            timerRef.current = setTimeout(typeText, typingSpeed);
         };
 
-        typeText();
-    }, []);
+        timerRef.current = setTimeout(typeText, 500);
+        return () => clearTimeout(timerRef.current);
+    }, [info?.roles]);
+
+    const name = info?.name || 'Sunil Pradhan';
+    const greeting = info?.greeting || "Hi, I'm";
+    const rolePrefix = info?.rolePrefix || 'Creative';
+    const heroTagline = info?.heroTagline || 'Curious mind. Creative Code. Constantly improving.\nLearning by building. Growing through code.';
+    const githubUrl = info?.githubUrl || 'https://github.com/Sunil-Pradhan04';
+    const linkedinUrl = info?.linkedinUrl || 'https://www.linkedin.com/in/sunil-pradhan-174364338';
+    const email = info?.email || 'sunilpradhanpersonal@gmail.com';
 
     return (
         <section className="hero section" id="home">
             <div className="hero-container container">
                 <div className="hero-content">
                     <div className="hero-text">
-                        <p className="hero-greeting fade-in">Hi, I'm</p>
+                        <p className="hero-greeting fade-in">{greeting}</p>
                         <h1 className="hero-name slide-in-left">
-                            <span className="text-gradient">Sunil Pradhan</span>
+                            <span className="text-gradient">{name}</span>
                         </h1>
                         <div className="hero-role slide-in-right">
-                            <span className="role-text">Creative </span>
+                            <span className="role-text">{rolePrefix} </span>
                             <span ref={typedTextRef} className="typed-text text-gradient-warm"></span>
                             <span className="cursor">|</span>
                         </div>
                         <p className="hero-description fade-in-up">
-                            Curious mind. Creative Code. Constantly improving.<br />
-                            Learning by building. Growing through code.
+                            {heroTagline.split('\n').map((line, i) => (
+                                <span key={i}>{line}{i < heroTagline.split('\n').length - 1 && <br />}</span>
+                            ))}
                         </p>
                         <div className="hero-buttons fade-in-up">
                             <button
@@ -76,13 +88,13 @@ const Hero = () => {
                             </button>
                         </div>
                         <div className="hero-social fade-in-up">
-                            <a href="https://github.com/Sunil-Pradhan04" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="social-link">
                                 <FaGithub />
                             </a>
-                            <a href="https://www.linkedin.com/in/sunil-pradhan-174364338" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className="social-link">
                                 <FaLinkedin />
                             </a>
-                            <a href="mailto:sunilpradhan042006@gmail.com" className="social-link">
+                            <a href={`mailto:${email}`} className="social-link">
                                 <FaEnvelope />
                             </a>
                         </div>
@@ -91,7 +103,7 @@ const Hero = () => {
                 <div className="hero-image-container slide-in-right">
                     <div className="hero-image">
                         <div className="image-glow"></div>
-                        <img src={sunilImg} alt="Sunil Pradhan" />
+                        <img src={sunilImg} alt={name} />
                     </div>
                 </div>
             </div>

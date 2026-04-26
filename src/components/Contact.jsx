@@ -1,47 +1,34 @@
 import { useState } from 'react';
 import { FaPaperPlane, FaEnvelope, FaUser, FaComment } from 'react-icons/fa';
+import { api } from '../services/api';
 import './Contact.css';
 
-const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
-    const [status, setStatus] = useState('');
+const Contact = ({ info }) => {
+    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+    const [status, setStatus] = useState(''); // '' | 'sending' | 'success' | 'error'
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
-
+        setErrorMsg('');
         try {
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    access_key: '98924596-6746-4039-9500-b5b93e54b4e0',
-                    ...formData
-                }),
-            });
-
-            if (response.ok) {
+            const result = await api.sendContact(formData);
+            if (result.message && !result.error) {
                 setStatus('success');
                 setFormData({ name: '', email: '', message: '' });
-                setTimeout(() => setStatus(''), 5000);
+                setTimeout(() => setStatus(''), 6000);
             } else {
                 setStatus('error');
+                setErrorMsg(result.message || 'Failed to send. Please try again.');
             }
-        } catch (error) {
+        } catch {
             setStatus('error');
+            setErrorMsg('Network error. Please check your connection.');
         }
     };
 
@@ -62,11 +49,15 @@ const Contact = () => {
                                 <FaEnvelope className="contact-icon" />
                                 <div>
                                     <h4 className="contact-label">Email</h4>
-                                    <a href="mailto:sunilpradhan042006@gmail.com" className="contact-value">
-                                        sunilpradhan042006@gmail.com
+                                    <a href={`mailto:${info?.email || 'sunilpradhanpersonal@gmail.com'}`} className="contact-value">
+                                        {info?.email || 'sunilpradhanpersonal@gmail.com'}
                                     </a>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className="contact-note">
+                            <p>📬 I'll also send you a confirmation email once your message is received!</p>
                         </div>
                     </div>
 
@@ -125,23 +116,21 @@ const Contact = () => {
                             disabled={status === 'sending'}
                         >
                             {status === 'sending' ? (
-                                'Sending...'
+                                <>⏳ Sending...</>
                             ) : (
-                                <>
-                                    <FaPaperPlane /> Send Message
-                                </>
+                                <><FaPaperPlane /> Send Message</>
                             )}
                         </button>
 
                         {status === 'success' && (
                             <div className="form-message success">
-                                ✓ Message sent successfully! I'll get back to you soon.
+                                ✅ Message sent! Check your inbox for a confirmation email. I'll reply soon!
                             </div>
                         )}
 
                         {status === 'error' && (
                             <div className="form-message error">
-                                ✗ Failed to send message. Please try again.
+                                ✗ {errorMsg || 'Failed to send. Please try again.'}
                             </div>
                         )}
                     </form>

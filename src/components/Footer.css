@@ -155,3 +155,92 @@
         font-size: 1.5rem;
     }
 }
+
+/* ── Admin Access ─────────────────────────────────────── */
+.admin-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 0.5rem;
+}
+
+.admin-access-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: #2d3748;
+    font-size: 0.72rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.02em;
+}
+
+.admin-access-btn:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    color: #4a5568;
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.admin-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.admin-badge {
+    font-size: 0.78rem;
+    color: #4ade80;
+    font-weight: 600;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+}
+
+.admin-edit-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 8px;
+    color: #818cf8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.admin-edit-btn:hover {
+    background: rgba(99, 102, 241, 0.25);
+    color: #a5b4fc;
+}
+
+.admin-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid rgba(248, 113, 113, 0.2);
+    border-radius: 8px;
+    color: #f87171;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.admin-logout-btn:hover {
+    background: rgba(248, 113, 113, 0.2);
+}

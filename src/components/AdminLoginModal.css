@@ -1,0 +1,191 @@
+.admin-login-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+}
+
+.admin-login-modal {
+    background: #0f172a;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 440px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(99, 102, 241, 0.15),
+        0 0 60px rgba(99, 102, 241, 0.08);
+    animation: modalPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.admin-shield {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 1.75rem;
+    color: white;
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+}
+
+.admin-login-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin: 0 0 1rem;
+}
+
+.only-for-sunil {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.sunil-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 0.3rem 0.875rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.6rem;
+}
+
+.only-for-sunil p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.admin-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #475569;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.password-input {
+    width: 100%;
+    padding: 0.875rem 3rem 0.875rem 2.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    color: #e2e8f0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+
+.password-input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.password-input::placeholder { color: #334155; }
+
+.toggle-visibility {
+    position: absolute;
+    right: 0.875rem;
+    background: none;
+    border: none;
+    color: #475569;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+.toggle-visibility:hover { color: #94a3b8; }
+
+.login-error {
+    color: #f87171;
+    font-size: 0.875rem;
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid rgba(248, 113, 113, 0.2);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    margin: 0;
+}
+
+.login-submit {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.login-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.session-info {
+    font-size: 0.78rem;
+    color: #334155;
+    margin: 1rem 0 0;
+    line-height: 1.5;
+}
+
+.session-info strong { color: #475569; }
+
+/* Success state */
+.login-success {
+    padding: 1rem 0;
+}
+
+.success-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    animation: successBounce 0.5s ease;
+}
+
+@keyframes successBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.login-success h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4ade80;
+    margin: 0 0 0.5rem;
+}
+
+.login-success p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 0;
+}
